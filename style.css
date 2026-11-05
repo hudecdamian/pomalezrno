@@ -165,12 +165,6 @@ nav a:hover::after {
   transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.ph span {
-  padding: 10px;
-  border: 1.5px dashed currentColor;
-  border-radius: 4px;
-  transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
 
 .ph:hover > img {
   transform: scale(1.06);

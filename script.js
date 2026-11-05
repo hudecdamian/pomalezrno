@@ -1,16 +1,4 @@
 const PHOTOS = {
-  // hero: "images/hero.jpg",
-  // intro: "images/o-nas.jpg",
-  // kava: "images/espresso.jpg",
-  // filtr: "images/filtr.jpg",
-  // zakusky: "images/zakusky.jpg",
-  // pecivo: "images/pecivo.jpg",
-  // g1: "images/galerie-1.jpg",
-  // g2: "images/galerie-2.jpg",
-  // g3: "images/galerie-3.jpg",
-  // g4: "images/galerie-4.jpg",
-  // g5: "images/galerie-5.jpg",
-  // mapa: "images/vchod.jpg"
 };
 
 document.querySelectorAll('.ph[data-k]').forEach(figure => {
