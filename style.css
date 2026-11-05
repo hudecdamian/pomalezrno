@@ -72,7 +72,7 @@ a:focus-visible {
 }
 
 .wrap {
-  max-width: 1180px;
+  max-width: 73.75rem; /* = 1180px, škáluje se s velikostí písma na velkých displejích */
   margin: 0 auto;
   padding: 0 clamp(18px, 4vw, 40px);
 }
@@ -186,7 +186,7 @@ nav a:hover::after {
   background: var(--bg);
   border: 1px solid var(--line);
   padding: 26px 30px;
-  max-width: 520px;
+  max-width: 32.5rem;
 }
 
 .hero-card h1 {
@@ -203,7 +203,7 @@ nav a:hover::after {
   grid-template-columns: 1fr 1fr;
   gap: clamp(24px, 5vw, 70px);
   align-items: center;
-  padding: clamp(50px, 8vw, 100px) 0;
+  padding-block: clamp(50px, 8vw, 100px);
 }
 
 .intro .ph {
@@ -315,7 +315,7 @@ nav a:hover::after {
 
 
 .gal {
-  padding: clamp(50px, 8vw, 100px) 0;
+  padding-block: clamp(50px, 8vw, 100px);
 }
 
 .gal h2 {
@@ -452,10 +452,6 @@ footer .wrap {
     grid-column: span 2;
   }
 
-  nav a:nth-child(3) {
-    display: none;
-  }
-
   .hero-card {
     margin-left: 0;
   }
@@ -480,4 +476,75 @@ html.lenis, html.lenis body {
 
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
+}
+
+/* =====================================================
+   RESPONSIVITA
+   4K 2560 | Laptop L 1440 | Laptop 1024 | Tablet 768
+   Mobile L 425 | Mobile M 375 | Mobile S 320
+   ===================================================== */
+
+.hero { padding-top: 28px; }
+.ph { width: 100%; }
+.hero .ph { max-height: 78vh; }
+.hero .ph:hover > img { transform: translateY(var(--py, 0px)) scale(1.12); }
+.cat li b:nth-of-type(2) { white-space: nowrap; }   /* cena se nikdy nezalomí */
+
+/* 4K a velké monitory: všechno v rem se zvětší úměrně */
+@media (min-width: 1920px) { html { font-size: 112.5%; } }
+@media (min-width: 2400px) { html { font-size: 137.5%; } }   /* 2560 px */
+
+/* Laptop 1024 */
+@media (max-width: 1024px) {
+  .visit .wrap { grid-template-columns: 1fr 1fr; }
+  .visit .ph { grid-column: 1 / -1; min-height: 300px; }
+}
+
+/* Tablet 768 a menší */
+@media (max-width: 780px) {
+  .logo { font-size: 1.5rem; }
+  .hero .ph { min-height: 300px; }
+  .intro .ph { aspect-ratio: 4 / 3; }
+  .cat { padding: 28px 0; }
+  .cat .ph { aspect-ratio: 16 / 10; }
+  .visit .wrap { grid-template-columns: 1fr; }
+  .visit .ph { min-height: 260px; }
+}
+
+/* Mobile L 425 (a vše pod 480) */
+@media (max-width: 480px) {
+  html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 90px); }
+  header.top .wrap { flex-direction: column; gap: 6px; padding-top: 10px; padding-bottom: 10px; }
+  nav { gap: 16px; font-size: 0.92rem; }
+  .hero { padding-top: 16px; }
+  .hero .ph { aspect-ratio: 4 / 3; min-height: 0; }
+  .hero-card { margin-top: -44px; padding: 20px 22px; }
+  .hero-card h1 { font-size: clamp(1.9rem, 8.5vw, 2.4rem); }
+  .intro, .gal { padding-block: 44px; }
+  .menu { padding: 44px 0; }
+  .menu > .wrap > h2 { font-size: 2.3rem; }
+  .cat h3 { font-size: 1.6rem; }
+  .cat li { gap: 6px; }
+  .grid { gap: 8px; }
+  .visit { padding: 44px 0; }
+  .visit .ph { min-height: 220px; }
+  footer .wrap { flex-direction: column; align-items: center; text-align: center; }
+}
+
+/* Mobile M 375 a Mobile S 320 */
+@media (max-width: 360px) {
+  body { font-size: 1rem; }
+  nav { gap: 12px; font-size: 0.88rem; }
+  .hero-card { padding: 18px; }
+  .hero-card h1 { font-size: 1.75rem; }
+  .menu > .wrap > h2 { font-size: 2rem; }
+  .cat li { font-size: 0.97rem; }
+  .cat li em { font-size: 0.85rem; }
+}
+
+/* Dotyková zařízení: žádné hover efekty, které by "skákaly" po ťuknutí */
+@media (hover: none) {
+  .cat li:hover b:first-child { letter-spacing: normal; }
+  .ph:hover > img { transform: none; }
+  .hero .ph:hover > img { transform: translateY(var(--py, 0px)) scale(1.12); }
 }

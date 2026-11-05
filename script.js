@@ -34,7 +34,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
     if (lenis) {
       lenis.scrollTo(targetEl || 0, {
-        offset: targetEl ? -60 : 0,
+        offset: targetEl ? -(header ? header.offsetHeight : 60) : 0,   // výška hlavičky (na mobilu je vyšší)
         duration: 1.6
       });
     } else {
@@ -65,7 +65,7 @@ function handleScroll() {
   }
 
   if (heroPhoto && !reduceMotion && currentScroll < window.innerHeight * 1.5) {
-    heroPhoto.style.setProperty('--py', (currentScroll * 0.08) + 'px');
+    heroPhoto.style.setProperty('--py', Math.min(currentScroll * 0.08, heroPhoto.offsetHeight * 0.05) + 'px');
   }
 }
 
@@ -75,7 +75,7 @@ handleScroll();
 
 
 if (!reduceMotion) {
-  const animateSelector = '.intro > *, .menu > .wrap > h2, .menu .sub, .cat h3, .cat .note, .cat li, .cat .ph, .gal h2, .grid .ph, .visit .wrap > *, .hero .ph';
+  const animateSelector = '.intro > *, .menu > .wrap > h2, .menu .sub, .cat h3, .cat .note, .cat li, .cat .ph, .gal h2, .grid .ph, .visit .wrap > *';
   
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
